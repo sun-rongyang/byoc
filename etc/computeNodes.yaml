@@ -1,0 +1,6 @@
+#######################################################################
+#              YAML CONFIGURATION FILE FOR COMPUTE NODES              #
+#######################################################################
+ETH_INTERFACE: 'enp7s0' #network interface name of compute node
+NODES_INFO_FILE: 'computeNodes.info' #file name of file contained compute node information
+

@@ -1,0 +1,23 @@
+#######################################################################
+#                   CLUSTER CONFIGURATION YAML FILE                   #
+#######################################################################
+
+## Network
+# Internet interface
+InternetInterface: 'your_internet_interface_name'
+
+## Mail to
+MailServer: 'your_email_server'
+MailPassword: 'your_email_password'
+MailAddress: 'your_email'
+MailDefaultSubject: 'email default subject'
+MailSignature: '\n-----------------------------------------------------------------\nFoo Bar'
+## Normal user
+# Limits
+# hard disk and memory
+LimitConfigFile: 'resource_limitation_config_file'
+QuotaSoft: '20G'
+QuotaHard: '21G'
+LimitRAM: '4000000'
+# slurm
+SlurmDefaultAccount: 'normaluser'
