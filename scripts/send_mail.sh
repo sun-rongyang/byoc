@@ -14,12 +14,12 @@ PROJECT_ETC_DIR="${PROJECT_ROOT_DIR}/etc"
 YAML_INTERPRETER="${PROJECT_LIB_DIR}/yaml_interpreter.py"
 SEND_MAIL_APP="${PROJECT_LIB_DIR}/send_email.py"
 CLUSTER_CONFIG_FILE="${PROJECT_ETC_DIR}/cluster.yaml"
-MailServer="$(python ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailServer)"
-MailPassword="$(python ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailPassword)"
-MailAddress="$(python ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailAddress)"
-MailDefaultSubject="$(python ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailDefaultSubject)"
+MailServer="$(python3 ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailServer)"
+MailPassword="$(python3 ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailPassword)"
+MailAddress="$(python3 ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailAddress)"
+MailDefaultSubject="$(python3 ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailDefaultSubject)"
 # use printf to save \n in a bash variable: printf -v var "string\nwith\n\n"
-printf -v MailSignature "$(python ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailSignature)"
+printf -v MailSignature "$(python3 ${YAML_INTERPRETER} ${CLUSTER_CONFIG_FILE} MailSignature)"
 FROM="${MailAddress}"
 # Arguments
 if [[ -f $1 ]]; then
@@ -46,10 +46,10 @@ if [[ -f ${TO} ]]; then
     while IFS=" " read -ra userinfo
     do
         useremail=${userinfo[1]}
-        python ${SEND_MAIL_APP} ${MailServer} "${MailPassword}" ${FROM} ${useremail} "${MESSAGE}" "${SUBJECT}" "${MailSignature}"
+        python3 ${SEND_MAIL_APP} ${MailServer} "${MailPassword}" ${FROM} ${useremail} "${MESSAGE}" "${SUBJECT}" "${MailSignature}"
     done < "${TO}"
 else
-    python ${SEND_MAIL_APP} ${MailServer} "${MailPassword}" ${FROM} ${TO} "${MESSAGE}" "${SUBJECT}" "${MailSignature}"
+    python3 ${SEND_MAIL_APP} ${MailServer} "${MailPassword}" ${FROM} ${TO} "${MESSAGE}" "${SUBJECT}" "${MailSignature}"
 fi
 
 exit
